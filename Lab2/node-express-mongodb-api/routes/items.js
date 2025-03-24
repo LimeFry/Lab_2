@@ -7,7 +7,7 @@ const Item = require('../models/item');
 /**
     * @swagger
     * /post:
-    *   get:
+    *   post:
     *     summary: Add an item to the database
     *     parameters:
     *       - in: path
@@ -67,7 +67,7 @@ router.get('/', async (req, res) => {
 /**
     * @swagger
     * /patch:
-    *   get:
+    *   patch:
     *     summary: Change an item in the database
     *     parameters:
     *       - in: path
@@ -99,7 +99,7 @@ router.patch('/:id', async (req, res) => {
 /**
     * @swagger
     * /delete:
-    *   get:
+    *   delete:
     *     summary: Delete an item in the database
     *     parameters:
     *       - in: path
