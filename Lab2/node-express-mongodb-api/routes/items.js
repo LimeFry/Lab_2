@@ -5,25 +5,35 @@ const Item = require('../models/item');
 // Create a new item
 
 /**
-    * @swagger
-    * /post:
-    *   post:
-    *     summary: Add an item to the database
-    *     parameters:
-    *       - in: path
-    *         name: name
-    *         schema:
-    *           type: string
-    *         required: true
-    *     requests:
-    *       1:
-    *         description: Calling the function requires an item name
-    *     responses:
-    *       1:
-    *         description: Nothing means success
-    *       2:
-    *         description: err.message means it was unsuccessful in adding the item
-    */
+ * @swagger
+ * components:
+ *  schemas:
+ *    items:
+ *      type: object
+ *      properties:
+ *        name:
+ *          type: string
+ *          description: The user's name
+ *        description:
+ *          type: string
+ *          description: Description of user
+ */
+
+/**
+ * @swagger
+ * /items:
+ *  post:
+ *    summary: Create a new user
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/items'
+ *    responses:
+ *      201:
+ *        description: User created
+ */
 
 router.post('/', async (req, res) => {
   try {
@@ -38,19 +48,14 @@ router.post('/', async (req, res) => {
 // Get all items
 
 /**
-    * @swagger
-    * /get:
-    *   get:
-    *     summary: Get all items from the database
-    *     requests:
-    *       1:
-    *         description: Calling the function requires no arguments
-    *     responses:
-    *       1:
-    *         description: The requested items
-    *       2:
-    *         description: err.message means it was unsuccessful in getting the items
-    */
+ * @swagger
+ * /items:
+ *  get:
+ *    summary: Retrieve a list of users
+ *    responses:
+ *      200:
+ *        description: A list of users
+ */
 
 router.get('/', async (req, res) => {
   try {
@@ -65,25 +70,14 @@ router.get('/', async (req, res) => {
 // Update an item
 
 /**
-    * @swagger
-    * /patch:
-    *   patch:
-    *     summary: Change an item in the database
-    *     parameters:
-    *       - in: path
-    *         name: name
-    *         schema:
-    *           type: string
-    *         required: true
-    *     requests:
-    *       1:
-    *         description: Calling the function requires an item name
-    *     responses:
-    *       1:
-    *         description: Nothing means success
-    *       2:
-    *         description: err.message means it was unsuccessful in modifying the item
-    */
+ * @swagger
+ * /items:
+ *  patch:
+ *    summary: Update user
+ *    responses:
+ *      200:
+ *        description: Update user
+ */
 
 router.patch('/:id', async (req, res) => {
   try {
@@ -97,25 +91,14 @@ router.patch('/:id', async (req, res) => {
 // Delete an item
 
 /**
-    * @swagger
-    * /delete:
-    *   delete:
-    *     summary: Delete an item in the database
-    *     parameters:
-    *       - in: path
-    *         name: name
-    *         schema:
-    *           type: string
-    *         required: true
-    *     requests:
-    *       1:
-    *         description: Calling the function requires an item name
-    *     responses:
-    *       1:
-    *         description: Nothing means success
-    *       2:
-    *         description: err.message means it was unsuccessful in deleting the item
-    */
+ * @swagger
+ * /items:
+ *  delete:
+ *    summary: Delete a user
+ *    responses:
+ *      200:
+ *        description: Delete user
+ */
 
 router.delete('/:id', async (req, res) => {
   try {
