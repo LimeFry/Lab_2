@@ -74,6 +74,12 @@ router.get('/', async (req, res) => {
  * /items:
  *  patch:
  *    summary: Update user
+ *    requestBody:
+ *          required: true
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/items'
  *    responses:
  *      200:
  *        description: Update user
@@ -95,6 +101,12 @@ router.patch('/:id', async (req, res) => {
  * /items:
  *  delete:
  *    summary: Delete a user
+ *    requestBody:
+ *          required: true
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/items'
  *    responses:
  *      200:
  *        description: Delete user
