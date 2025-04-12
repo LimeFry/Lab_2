@@ -71,15 +71,22 @@ router.get('/', async (req, res) => {
 
 /**
  * @swagger
- * /items:
+ * /items/{ID}:
  *  patch:
- *    summary: Update user
+ *    summary: Update item
+ *    parameters:
+ *    -  name: ID
+ *       in: path
+ *       required: true
+ *       type: string
+ *       format: ID
+ *       description: the ID of the item
  *    requestBody:
- *          required: true
- *          content:
- *            application/json:
- *              schema:
- *                $ref: '#/components/schemas/items'
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/items'   
  *    responses:
  *      200:
  *        description: Update user
@@ -98,18 +105,19 @@ router.patch('/:id', async (req, res) => {
 
 /**
  * @swagger
- * /items:
+ * /items/{ID}:
  *  delete:
- *    summary: Delete a user
- *    requestBody:
- *          required: true
- *          content:
- *            application/json:
- *              schema:
- *                $ref: '#/components/schemas/items'
+ *    summary: Delete item
+ *    parameters:
+ *    -  name: ID
+ *       in: path
+ *       required: true
+ *       type: string
+ *       format: ID
+ *       description: the ID of the item   
  *    responses:
  *      200:
- *        description: Delete user
+ *        description: Deleted user
  */
 
 router.delete('/:id', async (req, res) => {
