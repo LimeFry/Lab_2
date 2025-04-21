@@ -10,10 +10,9 @@ const PORT = process.env.PORT || 4000;
 // Middleware
 app.use(bodyParser.json());
 
-// MongoDB Connection
-mongoose.connect('mongodb+srv://Riley:durango@lab2.ue6bg.mongodb.net/?retryWrites=true&w=majority&appName=Lab2', {
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/Lab4', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -35,9 +34,9 @@ const swaggerOptions = {
           description: 'API documentation using Swagger',
       },
       servers: [
-          {
-              url: `http://localhost:${PORT}`,
-          },
+        {
+          url: '/', // relative to origin
+        },
       ],
  components: {
    securitySchemes: {
@@ -58,6 +57,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
 // Start the server
-app.listen(3000, () => {
-  console.log(`Server is running on port ${3000}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
